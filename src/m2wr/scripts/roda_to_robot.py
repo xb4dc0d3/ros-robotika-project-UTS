@@ -76,6 +76,9 @@ if __name__ == '__main__':
             time = input("Input time : ")
             lin_speed, ang_speed, time = robot.roda_to_robot(l_wheel_ang_speed, \
                                         r_wheel_ang_speed, time)
+
+            print "Linear Speed : ", lin_speed
+            print "Angular Speed: ", ang_speed 
             robot.move(lin_speed, ang_speed, time)
     except rospy.ROSInterruptException: 
         pass
