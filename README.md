@@ -1,7 +1,7 @@
 # UTS Project ROS 
 
 ## __Getting Started__
-Pastikan **python2** dan **git** sudah terinstall pada laptop/komputer Anda.
+Make sure you have **python2** and **git** installed.
 ```bash
 mkdir catkin_ws && cd catkin_ws
 git clone https://github.com/xb4dc0d3/ros-robotika-project-UTS.git
