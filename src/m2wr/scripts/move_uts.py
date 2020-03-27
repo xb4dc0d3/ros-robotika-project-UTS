@@ -50,7 +50,7 @@ def roda_to_robot(omega_l, omega_r):
     Vx = (radius_roda * omega_l)/2 + (radius_roda * omega_r)/2
     #Vy selalu 0
     W = (radius_roda * omega_l)/jarak_antar_roda - (radius_roda * omega_r)/jarak_antar_roda
-    return Vx, W;
+    return Vx, W
 
 def roda_to_pose(omega_l, omega_r, time, theta_rad, x, y):
     Vx, W = roda_to_robot(omega_l, omega_r)
@@ -76,7 +76,7 @@ def roda_to_pose(omega_l, omega_r, time, theta_rad, x, y):
             theta_t += 360
     theta_t_rad = theta_t * (PI/180)
 
-    return Vx, W, theta_t_rad, xt, yt;
+    return Vx, W, theta_t_rad, xt, yt
 
 if __name__ == '__main__':
     signal(SIGINT, handler)
@@ -92,11 +92,11 @@ if __name__ == '__main__':
             omega_r = input("Input kecepatan sudut roda kanan : ")
             time = input("Input t : ")
             linear_speed, angular_speed, theta_t_rad, xt, yt = roda_to_pose(omega_l, omega_r, time, theta_rad, x, y)
-            ### print kecepatan ###            
-            #print("v = ", linear_speed)
-            #print("w = ", angular_speed)
+            # print kecepatan linear dan angular             
+            print("v = ", linear_speed)
+            print("w = ", angular_speed)
 
-            ### print vektor pose ###
+            # print vektor pose ###
             x = xt
             y = yt
             theta_rad = theta_t_rad
