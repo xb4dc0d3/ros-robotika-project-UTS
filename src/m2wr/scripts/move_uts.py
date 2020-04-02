@@ -4,13 +4,29 @@ from signal import signal, SIGINT
 from sys import exit
 from nav_msgs.msg import Odometry
 
-import rospy
+import rospy, os, math, re
 from geometry_msgs.msg import Twist
-import math
 
-PI = math.pi    
-radius_roda = 0.1 #asumsi radius roda kiri sama dengan kanan
-jarak_antar_roda = 0.4
+
+def get_dist_and_radius_wheel():
+    xacro_file = open(os.getcwd()+'/src/m2wr/urdf/m2wr.xacro', 'r')
+    radius_roda = 0
+    jarak_antar_roda = 0
+    for line in xacro_file:
+        if "<wheelSeparation>" in line:
+            jarak_antar_roda = line
+        elif "<wheelDiameter>" in line:
+            radius_roda = line
+
+    radius_roda = float(re.findall(r"\d+\.\d+",radius_roda)[0])
+    jarak_antar_roda = float(re.findall(r"\d+\.\d+",jarak_antar_roda)[0])
+
+    return radius_roda/2, jarak_antar_roda
+
+
+# default 0.4 (jarak roda) dan 0.2 diameter roda
+radius_roda, jarak_antar_roda = get_dist_and_radius_wheel()
+print(radius_roda, jarak_antar_roda)
 
 class M2WR :
     def __init__(self, topic):
@@ -77,6 +93,8 @@ def roda_to_pose(omega_l, omega_r, time, theta_rad, x, y):
     theta_t_rad = theta_t * (PI/180)
 
     return Vx, W, theta_t_rad, xt, yt
+
+
 
 if __name__ == '__main__':
     signal(SIGINT, handler)
