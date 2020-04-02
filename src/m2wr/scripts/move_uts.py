@@ -25,6 +25,7 @@ def get_dist_and_radius_wheel():
 
 
 # default 0.4 (jarak roda) dan 0.2 diameter roda
+PI = math.pi
 radius_roda, jarak_antar_roda = get_dist_and_radius_wheel()
 print(radius_roda, jarak_antar_roda)
 
