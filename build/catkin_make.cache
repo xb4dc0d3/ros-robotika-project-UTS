@@ -1,2 +1,2 @@
 m2wr
--DCATKIN_DEVEL_PREFIX=/home/nux/Documents/Robotika/catkin_ws/devel -DCMAKE_INSTALL_PREFIX=/home/nux/Documents/Robotika/catkin_ws/install -G Unix Makefiles
+-DCATKIN_DEVEL_PREFIX=/home/anthonydewa/Documents/ros-robotika-project-UTS/devel -DCMAKE_INSTALL_PREFIX=/home/anthonydewa/Documents/ros-robotika-project-UTS/install -G Unix Makefiles
