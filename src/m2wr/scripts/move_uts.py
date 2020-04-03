@@ -78,11 +78,10 @@ def roda_to_pose(omega_l, omega_r, time, theta_rad, x, y):
         xt += Vx * math.cos(theta_rad) * time
         yt += Vx * -math.sin(theta_rad) * time
     else:
-        R = Vx / W
-        if (R <= 0):
-            R = R * -1
-        xt += R * math.cos(theta_t_rad+theta_rad)
-        yt += R * -math.sin(theta_t_rad+theta_rad)
+        xt += ((Vx*math.sin(theta_t_rad+theta_rad)/W) - (Vx*math.sin(0+theta_rad)/W))
+        
+        #menyesuaikan dengan koordinat gazebo maka yt akan dikali minus
+        yt += -((Vx*math.cos(0+theta_rad)/W) - (Vx*math.cos(theta_t_rad+theta_rad)/W))
 
     theta_t_rad += theta_rad
 
