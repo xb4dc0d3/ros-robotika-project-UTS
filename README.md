@@ -16,7 +16,7 @@ roslaunch m2wr rviz.launch
 ```
 ### Launch Simulation (Gazebo) and Spawn The Robot
 ```bash
-roslaunch gazebo_ros empty_world.launch
+roslaunch m2wr circuit.launch
 roslaunch m2wr spawn.launch
 ```
 ### Execute Program
