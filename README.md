@@ -4,8 +4,8 @@
 Make sure you have **python2** and **git** installed.
 ```bash
 mkdir catkin_ws && cd catkin_ws
-catkin make
 git clone https://github.com/xb4dc0d3/ros-robotika-project-UTS.git
+catkin_make
 source devel/setup.bash
 ```
 
