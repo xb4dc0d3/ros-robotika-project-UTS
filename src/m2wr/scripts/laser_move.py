@@ -8,92 +8,92 @@ from geometry_msgs.msg import Twist
 from sensor_msgs.msg import LaserScan
 from nav_msgs.msg import Odometry
 
-def callback(msg):
+def get_dist_and_radius_wheel():
+    xacro_file = open(os.getcwd()+'/src/m2wr/urdf/gazebo.xacro', 'r')
+    radius_roda = 0
+    jarak_antar_roda = 0
+    for line in xacro_file:
+        if "<wheelSeparation>" in line:
+            jarak_antar_roda = line
+        elif "<wheelDiameter>" in line:
+            radius_roda = line
+
+    radius_roda = float(re.findall(r"\d+\.\d+",radius_roda)[0])
+    jarak_antar_roda = float(re.findall(r"\d+\.\d+",jarak_antar_roda)[0])
+
+    return radius_roda/2, jarak_antar_roda
+
+PI = math.pi
+radius_roda, jarak_antar_roda = get_dist_and_radius_wheel()
+position = None
+
+def clbk_position(msg):
     global position
     position  = msg.pose.pose.position
 
 def clbk_laser(msg):
     regions = {
-        'right':  min(min(msg.ranges[0:143]), 10),
-        'fright': min(min(msg.ranges[144:287]), 10),
-        'front':  min(min(msg.ranges[288:431]), 10),
-        'fleft':  min(min(msg.ranges[432:575]), 10),
-        'left':   min(min(msg.ranges[576:713]), 10),
+        'right':  min(min(msg.ranges[0:143]), 20),
+        'fright': min(min(msg.ranges[144:287]), 20),
+        'front':  min(min(msg.ranges[288:431]), 20),
+        'fleft':  min(min(msg.ranges[432:575]), 20),
+        'left':   min(min(msg.ranges[576:719]), 20),
     }
     take_action(regions)
 
 def take_action(regions):
     msg = Twist()
-    linear_x = 0
-    angular_z = 0
-    print position
+
+    omega_l, omega_r = 0, 0
+    global position
     if (float(position.x) > 0 and float(position.x) < 2) and float(position.y) < -9:
-        linear_x = 0
-        angular_z = 0
-        msg.linear.x = linear_x
-        msg.angular.z = angular_z
-        pub.publish(msg)
-        print "finish!"
-        exit()
+        omega_l, omega_r = 0, 0
     else:
-        if regions['front'] > 2 and regions['fleft'] > 2 and regions['fright'] > 2:
-            state_description = 'case 1 - nothing'
-            linear_x = 0.3
-            angular_z = 0
-        elif regions['front'] < 2 and regions['fleft'] > 2 and regions['fright'] > 2:
-            state_description = 'case 2 - front'
-            if regions['front'] < 0.5:
-                linear_x = 0
-                angular_z = 0.5
-            else:
-                linear_x = 0.3
-                angular_z = 0.5
-        elif regions['front'] < 2 and regions['fleft'] > 2 and regions['fright'] < 2:
-            state_description = 'case 5 - front and fright'
-            if regions['front'] < 0.5:
-                linear_x = 0
-                angular_z = -0.5
-            else:
-                linear_x = 0.3
-                angular_z = -0.5
-        elif regions['front'] < 2 and regions['fleft'] < 2 and regions['fright'] > 2:
-            state_description = 'case 6 - front and fleft'
-            if regions['front'] < 0.5:
-                linear_x = 0
-                angular_z = 0.5
-            else:
-                linear_x = 0.3
-                angular_z = 0.5
-        elif regions['front'] < 2 and regions['fleft'] < 2 and regions['fright'] < 2:
-            state_description = 'case 7 - front and fleft and fright'
-            if regions['front'] < 0.5 and regions['fleft'] < 0.5:
-                linear_x = 0
-                angular_z = 0.5
-            elif regions['front'] < 0.5 and regions['fright'] < 0.5:
-                linear_x = 0
-                angular_z = -0.5
-            else:
-                linear_x = 0.3
-                angular_z = 0.5
+        if regions['front'] > 1 and regions['fleft'] > 1 and regions['fright'] > 1:
+            omega_l, omega_r = 5, 5
+        elif regions['front'] > 1 and regions['fleft'] > 1 and regions['fright'] < 1:
+            omega_l, omega_r = 3, 5
+        elif regions['front'] > 1 and regions['fleft'] < 1 and regions['fright'] > 1:
+            omega_l, omega_r = 5, 3
+        elif regions['front'] > 1 and regions['fleft'] < 1 and regions['fright'] < 1:
+            if regions['left'] > regions['right']:  
+                omega_l, omega_r = 4, 5
+            elif regions['left'] < regions['right']:
+                omega_l, omega_r = 5, 4
+        elif regions['front'] < 1 and regions['fleft'] > 1 and regions['fright'] > 1:
+            omega_l, omega_r = 5, 2.5
+        elif regions['front'] < 1 and regions['fleft'] > 1 and regions['fright'] < 1:
+            omega_l, omega_r = 2.5, 5
+        elif regions['front'] < 1 and regions['fleft'] < 1 and regions['fright'] > 1:
+            omega_l, omega_r = 5, 2.5
+        elif regions['front'] < 1 and regions['fleft'] < 1 and regions['fright'] < 1:
+            if regions['left'] > regions['right']:  
+                omega_l, omega_r = -2.5, 2.5
+            elif regions['left'] < regions['right']:
+                omega_l, omega_r = 2.5, -2.5
         else:
             state_description = 'unknown case'
-            #rospy.loginfo(regions)
-            linear_x = 0.3
-            angular_z = 0
+            omega_l, omega_r = 5, 5
 
-    #rospy.loginfo(state_description)
-    msg.linear.x = linear_x
-    msg.angular.z = angular_z
+    linear_speed, angular_speed = roda_to_robot(omega_l, omega_r)
+    msg.linear.x = linear_speed
+    msg.angular.z = angular_speed
     pub.publish(msg)
     exit()
+
+def roda_to_robot(omega_l, omega_r):
+    Vx = (radius_roda * omega_l)/2 + (radius_roda * omega_r)/2
+    #Vy selalu 0
+    W = (radius_roda * omega_l)/jarak_antar_roda - (radius_roda * omega_r)/jarak_antar_roda
+    return Vx, W
 
 def main():
     global pub
 
     rospy.init_node('reading_laser')    
     pub = rospy.Publisher('/m2wr/cmd_vel', Twist, queue_size=1)    
-    sub = rospy.Subscriber('/m2wr/laser/scan', LaserScan, clbk_laser)
-    odom_sub = rospy.Subscriber('/m2wr/odom', Odometry, callback)    
+    laser_sub = rospy.Subscriber('/m2wr/laser/scan', LaserScan, clbk_laser)
+    odom_sub = rospy.Subscriber('/m2wr/odom', Odometry, clbk_position)    
     rospy.spin()
 
 if __name__ == '__main__':
