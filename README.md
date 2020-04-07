@@ -8,19 +8,52 @@ git clone https://github.com/xb4dc0d3/ros-robotika-project-UTS.git
 source devel/setup.bash
 ```
 
-## __Run Application__
+## __Run Application__ PART I
+
+### Launch Simulation (Gazebo) and Spawn The Robot
+```bash
+roslaunch gazebo_ros empty_world.launch
+roslaunch m2wr spawn-no-sensor.launch
+```
+### Rviz Plotting
+```bash
+roslaunch m2wr rviz-no-sensor.launch
+```
+
+### Execute Program
+```bash
+rosrun m2wr move_uts.py
+```
+## __Run Application__ PART II
+
+### Launch Simulation (Gazebo) and Spawn The Robot
+```bash
+roslaunch m2wr circuit.launch
+roslaunch m2wr spawn-no-sensor.launch
+```
+### Rviz Plotting
+```bash
+roslaunch m2wr rviz-no-sensor.launch
+```
+
+### Execute Program
+```bash
+rosrun m2wr move_uts.py
+```
+
+## __Run Application__ PART II
+
+### Launch Simulation (Gazebo) and Spawn The Robot
+```bash
+roslaunch m2wr circuit.launch
+roslaunch m2wr spawn.launch
+```
 ### Rviz Plotting
 ```bash
 roslaunch m2wr rviz.launch
 ```
-### Launch Simulation (Gazebo) and Spawn The Robot
-```bash
-roslaunch gazebo_ros empty_world.launch
-roslaunch m2wr spawn.launch
-```
+
 ### Execute Program
 ```bash
-chmod +x move_uts.py
-rosrun m2wr move_uts.py
+rosrun m2wr laser_move.py
 ```
-
