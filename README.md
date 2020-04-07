@@ -41,7 +41,7 @@ roslaunch m2wr rviz-no-sensor.launch
 rosrun m2wr move_uts.py
 ```
 
-## __Run Application__ PART II
+## __Run Application__ PART III
 
 ### Launch Simulation (Gazebo) and Spawn The Robot
 ```bash
