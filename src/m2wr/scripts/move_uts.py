@@ -9,7 +9,7 @@ from geometry_msgs.msg import Twist
 
 
 def get_dist_and_radius_wheel():
-    xacro_file = open(os.getcwd()+'/src/m2wr/urdf/m2wr.xacro', 'r')
+    xacro_file = open(os.getcwd()+'/src/m2wr/urdf/m2wr-no-sensor.xacro', 'r')
     radius_roda = 0
     jarak_antar_roda = 0
     for line in xacro_file:
@@ -78,20 +78,12 @@ def roda_to_pose(omega_l, omega_r, time, theta_rad, x, y):
         xt += Vx * math.cos(theta_rad) * time
         yt += Vx * -math.sin(theta_rad) * time
     else:
-        xt += ((Vx*math.sin(theta_t_rad)/W) - (Vx*math.sin(0)/W)) * math.copysign(1, math.cos(theta_rad))
+        xt += ((Vx*math.sin(theta_t_rad+theta_rad)/W) - (Vx*math.sin(0+theta_rad)/W))
         
         #menyesuaikan dengan koordinat gazebo maka yt akan dikali minus
-        yt += -((Vx*math.cos(0)/W) - (Vx*math.cos(theta_t_rad)/W)) * math.copysign(1, math.sin(theta_rad))
-
+        yt += -((Vx*math.cos(0+theta_rad)/W) - (Vx*math.cos(theta_t_rad+theta_rad)/W))
+#
     theta_t_rad += theta_rad
-    theta_t = theta_t_rad * (180/PI)
-    if (theta_t >= 360):
-        while (theta_t >= 360):
-            theta_t -= 360
-    elif (theta_t < 0):
-        while (theta_t < 0):
-            theta_t += 360
-    theta_t_rad = theta_t * (PI/180)
 
     return Vx, W, theta_t_rad, xt, yt
 
