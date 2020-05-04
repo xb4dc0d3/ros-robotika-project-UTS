@@ -43,10 +43,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/nux/Documents/Robotika/catkin_ws/src
+CMAKE_SOURCE_DIR = /home/nux/Documents/Robotika/UTS_Fix/catkin_ws/src
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/nux/Documents/Robotika/catkin_ws/build
+CMAKE_BINARY_DIR = /home/nux/Documents/Robotika/UTS_Fix/catkin_ws/build
 
 # Utility rule file for _catkin_empty_exported_target.
 
@@ -63,10 +63,10 @@ m2wr/CMakeFiles/_catkin_empty_exported_target.dir/build: _catkin_empty_exported_
 .PHONY : m2wr/CMakeFiles/_catkin_empty_exported_target.dir/build
 
 m2wr/CMakeFiles/_catkin_empty_exported_target.dir/clean:
-	cd /home/nux/Documents/Robotika/catkin_ws/build/m2wr && $(CMAKE_COMMAND) -P CMakeFiles/_catkin_empty_exported_target.dir/cmake_clean.cmake
+	cd /home/nux/Documents/Robotika/UTS_Fix/catkin_ws/build/m2wr && $(CMAKE_COMMAND) -P CMakeFiles/_catkin_empty_exported_target.dir/cmake_clean.cmake
 .PHONY : m2wr/CMakeFiles/_catkin_empty_exported_target.dir/clean
 
 m2wr/CMakeFiles/_catkin_empty_exported_target.dir/depend:
-	cd /home/nux/Documents/Robotika/catkin_ws/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/nux/Documents/Robotika/catkin_ws/src /home/nux/Documents/Robotika/catkin_ws/src/m2wr /home/nux/Documents/Robotika/catkin_ws/build /home/nux/Documents/Robotika/catkin_ws/build/m2wr /home/nux/Documents/Robotika/catkin_ws/build/m2wr/CMakeFiles/_catkin_empty_exported_target.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/nux/Documents/Robotika/UTS_Fix/catkin_ws/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/nux/Documents/Robotika/UTS_Fix/catkin_ws/src /home/nux/Documents/Robotika/UTS_Fix/catkin_ws/src/m2wr /home/nux/Documents/Robotika/UTS_Fix/catkin_ws/build /home/nux/Documents/Robotika/UTS_Fix/catkin_ws/build/m2wr /home/nux/Documents/Robotika/UTS_Fix/catkin_ws/build/m2wr/CMakeFiles/_catkin_empty_exported_target.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : m2wr/CMakeFiles/_catkin_empty_exported_target.dir/depend
 

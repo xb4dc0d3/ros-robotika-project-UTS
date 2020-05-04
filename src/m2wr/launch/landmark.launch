@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launch>
+
+  <group>
+    <param name="robot_description" command="cat '$(find m2wr)/urdf/m2wr.xacro'" />
+
+    <arg name="x" default="0"/>
+    <arg name="y" default="0"/>
+    <arg name="z" default="0.5"/>
+
+    <node name="mybot_spawn" pkg="gazebo_ros" type="spawn_model" output="screen"
+          args="-urdf -param robot_description -model m2wr -x $(arg x) -y $(arg y) -z $(arg z)" />
+
+  </group>
+
+  <group ns="landmark">
+    <param name="robot_description" command="cat '$(find m2wr)/urdf/mybox.xacro'" />
+
+    <arg name="x" default="2"/>
+    <arg name="y" default="3"/>
+    <arg name="z" default="0.1"/>
+
+    <node name="landmark" pkg="gazebo_ros" type="spawn_model" output="screen"
+          args="-urdf -param robot_description -model landmark -x $(arg x) -y $(arg y) -z $(arg z)" />
+  </group>
+<!-- 
+  <group ns="landmark1">
+    <param name="robot_description" command="cat '$(find m2wr)/urdf/mybox.xacro'" />
+
+    <arg name="x" default="-1"/>
+    <arg name="y" default="-3"/>
+    <arg name="z" default="0.2"/>
+
+    <node name="landmark1" pkg="gazebo_ros" type="spawn_model" output="screen"
+          args="-urdf -param robot_description -model landmark1 -x $(arg x) -y $(arg y) -z $(arg z)" />
+  </group> -->
+
+</launch>

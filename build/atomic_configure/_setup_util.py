@@ -268,7 +268,7 @@ if __name__ == '__main__':
 
         if not args.local:
             # environment at generation time
-            CMAKE_PREFIX_PATH = '/opt/ros/melodic'.split(';')
+            CMAKE_PREFIX_PATH = '/home/nux/Documents/Robotika/UTS_Fix/catkin_ws/devel;/opt/ros/melodic;/opt/jderobot;/opt/jderobot;/opt/jderobot'.split(';')
         else:
             # don't consider any other prefix path than this one
             CMAKE_PREFIX_PATH = []

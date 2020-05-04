@@ -1,8 +1,8 @@
-# Install script for directory: /home/nux/Documents/Robotika/catkin_ws/src/m2wr
+# Install script for directory: /home/nux/Documents/Robotika/UTS_Fix/catkin_ws/src/m2wr
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
-  set(CMAKE_INSTALL_PREFIX "/home/nux/Documents/Robotika/catkin_ws/install")
+  set(CMAKE_INSTALL_PREFIX "/home/nux/Documents/Robotika/UTS_Fix/catkin_ws/install")
 endif()
 string(REGEX REPLACE "/$" "" CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
 
@@ -38,17 +38,17 @@ if(NOT DEFINED CMAKE_CROSSCOMPILING)
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/pkgconfig" TYPE FILE FILES "/home/nux/Documents/Robotika/catkin_ws/build/m2wr/catkin_generated/installspace/m2wr.pc")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/pkgconfig" TYPE FILE FILES "/home/nux/Documents/Robotika/UTS_Fix/catkin_ws/build/m2wr/catkin_generated/installspace/m2wr.pc")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/m2wr/cmake" TYPE FILE FILES
-    "/home/nux/Documents/Robotika/catkin_ws/build/m2wr/catkin_generated/installspace/m2wrConfig.cmake"
-    "/home/nux/Documents/Robotika/catkin_ws/build/m2wr/catkin_generated/installspace/m2wrConfig-version.cmake"
+    "/home/nux/Documents/Robotika/UTS_Fix/catkin_ws/build/m2wr/catkin_generated/installspace/m2wrConfig.cmake"
+    "/home/nux/Documents/Robotika/UTS_Fix/catkin_ws/build/m2wr/catkin_generated/installspace/m2wrConfig-version.cmake"
     )
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/m2wr" TYPE FILE FILES "/home/nux/Documents/Robotika/catkin_ws/src/m2wr/package.xml")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/m2wr" TYPE FILE FILES "/home/nux/Documents/Robotika/UTS_Fix/catkin_ws/src/m2wr/package.xml")
 endif()
 

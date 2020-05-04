@@ -67,14 +67,14 @@ set(m2wr_CONFIG_INCLUDED TRUE)
 
 # set variables for source/devel/install prefixes
 if("FALSE" STREQUAL "TRUE")
-  set(m2wr_SOURCE_PREFIX /home/nux/Documents/Robotika/catkin_ws/src/m2wr)
-  set(m2wr_DEVEL_PREFIX /home/nux/Documents/Robotika/catkin_ws/devel)
+  set(m2wr_SOURCE_PREFIX /home/nux/Documents/Robotika/UTS_Fix/catkin_ws/src/m2wr)
+  set(m2wr_DEVEL_PREFIX /home/nux/Documents/Robotika/UTS_Fix/catkin_ws/devel)
   set(m2wr_INSTALL_PREFIX "")
   set(m2wr_PREFIX ${m2wr_DEVEL_PREFIX})
 else()
   set(m2wr_SOURCE_PREFIX "")
   set(m2wr_DEVEL_PREFIX "")
-  set(m2wr_INSTALL_PREFIX /home/nux/Documents/Robotika/catkin_ws/install)
+  set(m2wr_INSTALL_PREFIX /home/nux/Documents/Robotika/UTS_Fix/catkin_ws/install)
   set(m2wr_PREFIX ${m2wr_INSTALL_PREFIX})
 endif()
 
@@ -154,7 +154,7 @@ foreach(library ${libraries})
     set(lib_path "")
     set(lib "${library}-NOTFOUND")
     # since the path where the library is found is returned we have to iterate over the paths manually
-    foreach(path /home/nux/Documents/Robotika/catkin_ws/install/lib;/opt/ros/melodic/lib)
+    foreach(path /home/nux/Documents/Robotika/UTS_Fix/catkin_ws/install/lib;/home/nux/Documents/Robotika/UTS_Fix/catkin_ws/devel/lib;/opt/ros/melodic/lib)
       find_library(lib ${library}
         PATHS ${path}
         NO_DEFAULT_PATH NO_CMAKE_FIND_ROOT_PATH)

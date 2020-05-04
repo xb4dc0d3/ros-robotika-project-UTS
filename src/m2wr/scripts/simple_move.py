@@ -5,7 +5,7 @@ from sys import exit
 
 import rospy
 from geometry_msgs.msg import Twist
-import math
+import math,os
 
 PI = math.pi    
 
@@ -23,7 +23,7 @@ class M2WR :
         vel_msg.angular.x = 0
         vel_msg.angular.y = 0
         vel_msg.angular.z = abs(ang_speed)
-        
+
         while not rospy.is_shutdown():
 
             t0 = rospy.Time.now().to_sec()

@@ -1,0 +1,2 @@
+roslaunch gazebo_ros empty_gazebo.launch
+roslaunch m2wr spawn.launchrosrun m2wr simple_move.py

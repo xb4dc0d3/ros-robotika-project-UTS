@@ -7,7 +7,5 @@
 # new environment variables
 
 # modified environment variables
-export CMAKE_PREFIX_PATH="/home/nux/Documents/Robotika/catkin_ws/devel:$CMAKE_PREFIX_PATH"
-export PWD="/home/nux/Documents/Robotika/catkin_ws/build"
-export ROSLISP_PACKAGE_DIRECTORIES="/home/nux/Documents/Robotika/catkin_ws/devel/share/common-lisp"
-export ROS_PACKAGE_PATH="/home/nux/Documents/Robotika/catkin_ws/src:$ROS_PACKAGE_PATH"
+export PWD="/home/nux/Documents/Robotika/UTS_Fix/catkin_ws/build"
+export PYTHONPATH="/home/nux/Documents/Robotika/UTS_Fix/catkin_ws/devel/lib/python2.7/dist-packages:$PYTHONPATH"
